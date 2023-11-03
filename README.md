@@ -22,5 +22,5 @@ Offres de DeltaBot:
 
 ## Lien utiles
 
-*   [Discord](https://discord.gg/VAatzcw)
+*   [Discord](https://discord.gg/Qc8Ch7bZq4)
 *   [Github](https://github.com/serzy0079/deltabot)
