@@ -24,7 +24,8 @@ const guildSchema = new mongoose.Schema({
       },
       antilink: {
         enabled: false,
-        ignored: [],
+        ignoredChannel: [],
+        ignoredRole: [],
       },
       fortniteshop: {
         enabled: false,
