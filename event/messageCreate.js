@@ -1,5 +1,6 @@
 const config = require("../config");
 const Guild = require("../models/Guild");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: 'messageCreate',
@@ -13,8 +14,8 @@ module.exports = {
     const guildData = await Guild.findOne({ id: guildId });
 
     if (guildData && guildData.plugins.antilink.enabled) {
-      const ignoredChannels = guildData.plugins.antilink.ignoredChannel || [];
-      const ignoredRoles = guildData.plugins.antilink.ignoredRole || [];
+      const ignoredChannels = guildData.plugins.antilink.ignoredChannels || [];
+      const ignoredRoles = guildData.plugins.antilink.ignoredRoles || [];
 
       const hasIgnoredRole = message.member.roles.cache.some((role) => ignoredRoles.includes(role.id));
 
@@ -23,8 +24,26 @@ module.exports = {
       const linkRegex = /(?:discord\.gg|discordapp\.com\/invite)\//;
       if (linkRegex.test(message.content) && !hasIgnoredRole && !isIgnoredChannel) {
         message.delete();
-        message.reply("Les liens d'invitation ne sont pas autorisés ici.");
+
+        const embed = new EmbedBuilder()
+          .setTitle("Lien d'invitation non autorisé")
+          .setDescription("Les liens d'invitation ne sont pas autorisés ici.")
+          .setFooter("Message automatiquement supprimé.")
+          .setImage(config.imageBot)
+          .setColor(config.color.default);
+
+        message.reply({ embeds: [embed] });
       }
+    }
+
+    if (message.mentions.has(client.user)) {
+      const embed = new EmbedBuilder()
+        .setAuthor({ name: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
+        .setDescription(`Hey error, je suis un bot multifonction **Français** crée par \`serzy0079\` avec la librairie [discord.js](https://discord.js.org/) et j'utilise comme base de donnée [mongoose](https://mongoosejs.com/).\nViens découvir mon code sur l'espace [github](https://github.com/serzy0079/deltabot) dédier a **DeltaBot** 🔔`)
+        .setImage(config.imageBot)
+        .setColor(config.color.default);
+
+      message.reply({ embeds: [embed] });
     }
   }
 };
