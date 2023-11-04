@@ -15,7 +15,7 @@ module.exports = {
     ],
   },
 
-  async execute(client, interaction) {
+  async exe(client, interaction) {
     const guildId = interaction.guild.id;
     const status = interaction.options.getBoolean("status");
 
