@@ -9,8 +9,8 @@ module.exports = {
 
   async exe(client, interaction) {   
      const helpEmbed = new EmbedBuilder()
-      .setAuthor({ name: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
-      .setDescription(`[Bienvenue sur DeltaBot](https://deltabot.fr/)\n\nMerci d'utiliser notre bot !\n\nTest`)
+      .setAuthor({ name: `${client.user.username} | Commandes`, iconURL: `${client.user.displayAvatarURL()}` })
+      .setDescription(`• Je suis un bot multifonction **Français** crée par \`serzy0079\`. Vous pouvez trouver mon code sur la plateforme [github](https://github.com/serzy0079/deltabot).\n\n\`🧰 Administration - (1)\`\n\`/config-antilink\`\n\n\`👥 Général - (1)\`\n\`/botinfo\``)
       .setImage(config.imageBot)
       .setColor(config.color.default);
 
