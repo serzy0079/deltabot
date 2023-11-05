@@ -16,6 +16,14 @@ module.exports = {
   },
 
   async exe(client, interaction) {
+    if (!interaction.member.permissions.has("Administrator")) {
+      interaction.reply({
+        content: "Vous n'avez pas l'autorisation d'utiliser cette commande. Veuillez demander à un administrateur d'utiliser la commande `/config-antilink`.",
+        ephemeral: true,
+      });
+      return;
+    }
+    
     const guildId = interaction.guild.id;
     const status = interaction.options.getBoolean("status");
 
